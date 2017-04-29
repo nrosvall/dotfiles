@@ -9,9 +9,6 @@
 ;; -----------
 (setq-default fill-column 78)
 
-(global-set-key [home] 'beginning-of-buffer)
-(global-set-key [end] 'end-of-buffer)
-
 (setq-default inhibit-splash-screen t)
 (cua-mode t)
 
