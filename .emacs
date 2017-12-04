@@ -1,5 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+(load-theme 'Amelie t)
+(tool-bar-mode 0)
+(menu-bar-mode 0)
 ;;
 ;; Auto fill mode
 ;; --------------
@@ -76,8 +80,8 @@
     )
   )
 
-(global-unset-key (kbd "M-,"))
-(global-set-key (kbd "M-,") 'looptag)
+(global-unset-key (kbd "M-q"))
+(global-set-key (kbd "M-q") 'looptag)
 
 ;;Disable backups
 (setq make-backup-files nil)
@@ -105,5 +109,19 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+
+
 (custom-set-faces
- '(default ((t (:family "Source Code Pro" :foundry "adobe" :slant normal :weight normal :height 113 :width normal)))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Liberation Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(cua-mode t nil (cua-base))
+ '(custom-safe-themes (quote ("a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default)))
+ '(tool-bar-mode nil))
