@@ -1,7 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-(load-theme 'Amelie t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 ;;
@@ -19,7 +17,7 @@
 (setq-default indent-tabs-mode nil)
 
 (setq c-default-style "linux"
-	c-basic-offset 4)
+	c-basic-offset 8)
 
 (global-set-key [f5]  'compile)
 (setq compile-command "make")
@@ -41,18 +39,11 @@
 
 (global-set-key (kbd "C-x d") 'duplicate-line)
 
-;;Windows style undo/redo
-(require 'undo-tree)
-(global-undo-tree-mode 1)
-(defalias 'redo 'undo-tree-redo)
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-y") 'redo)
-
 ;;Switch between header and source files with F12
 (global-set-key [f12] 'ff-find-other-file)
 
 ;;Automatic TAGS file update
-(defadvice find-tag (around refresh-etags activate)
+(defadvice xref-find-definitions (around refresh-etags activate)
    "Rerun etags and reload tags if tag not found and redo find-tag.
    If buffer is modified, ask about save before running etags."
   (let ((extension (file-name-extension (buffer-file-name))))
@@ -76,7 +67,7 @@
 (defun looptag ()
   (interactive)
   (let ((current-prefix-arg 4))
-    (call-interactively 'find-tag)
+    (call-interactively 'xref-find-definitions)
     )
   )
 
@@ -88,17 +79,10 @@
 ;;Disable autosave
 (setq auto-save-default nil)
 
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
 (ido-mode 1)
 
-;;Support for todo comments in the code
-(require 'button-lock)
-(require 'fixmee)
-(global-fixmee-mode 1)
-(global-set-key [f3] 'fixmee-goto-nextmost-urgent)
-(global-set-key [f2] 'fixmee-goto-prevmost-urgent)
-;;For viewing all todo items, use C-c v
-
-;;Web mode for basic web document editing
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -108,8 +92,6 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
