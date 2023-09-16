@@ -98,12 +98,53 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Liberation Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "Liberation Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode t nil (cua-base))
- '(custom-safe-themes (quote ("a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default)))
- '(tool-bar-mode nil))
+ '(custom-safe-themes
+   '("a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default))
+ '(tool-bar-mode nil)
+ '(warning-suppress-types '((comp) (comp))))
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(setq
+ mue4e-headers-skip-duplicates  t
+ mu4e-view-show-images t
+ mu4e-view-show-addresses t
+ mu4e-compose-format-flowed nil
+ mu4e-date-format "%y/%m/%d"
+ mu4e-headers-date-format "%Y/%m/%d"
+ mu4e-change-filenames-when-moving t
+ mu4e-attachments-dir "~/Downloads"
+ mu4e-maildir       "~/Maildir"   ;; top-level Maildir
+ ;; note that these folders below must start with /
+ ;; the paths are relative to maildir root
+ mu4e-refile-folder "/Archive"
+ mu4e-sent-folder   "/Sent Items"
+ mu4e-drafts-folder "/Drafts"
+ mu4e-trash-folder  "/Trash")
+
+ ;; Re-index every 5 minutes.
+(setq mu4e-update-interval 300)
+(setq mu4e-user-mail-address-list '("niko@byteptr.com"))
+
+(add-to-list 'mu4e-bookmarks
+  '( :name  "From Katriina"
+     :query "from:katriina.ahava@gmail.com"
+     :key   ?k))
+
+(setq user-mail-address "niko@byteptr.com")
+
+;; this setting allows to re-sync and re-index mail
+;; by pressing U
+(setq mu4e-get-mail-command  "mbsync -a")
+(setq message-send-mail-function 'message-send-mail-with-sendmail
+      sendmail-program "msmtp")
+
+
+(global-set-key [f9] 'mu4e)
