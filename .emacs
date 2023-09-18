@@ -113,7 +113,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 (setq
- mue4e-headers-skip-duplicates  t
+ mu4e-headers-skip-duplicates  t
  mu4e-view-show-images t
  mu4e-view-show-addresses t
  mu4e-compose-format-flowed nil
