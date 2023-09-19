@@ -148,3 +148,4 @@
 
 
 (global-set-key [f9] 'mu4e)
+(global-set-key [f8] 'mu4e-headers-toggle-full-search)
