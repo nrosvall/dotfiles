@@ -149,3 +149,34 @@
 
 (global-set-key [f9] 'mu4e)
 (global-set-key [f8] 'mu4e-headers-toggle-full-search)
+
+
+ (defun insert-current-date () (interactive)
+    (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
+
+(define-skeleton article-template
+  "Insert my article template into an active buffer."
+  "Article title: "
+  "<!doctype html>
+<html lang=\"en\">
+    <head>
+        <meta charset=\"utf-8\">
+        <title>N.V Rosvall's weblog:" str "</title>
+        <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\">
+        <link rel=\"stylesheet\" href=\"../style.css\">
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" />
+    </head>
+    <body>
+        <div id=\"content\">
+            <h1>" str "</h1>
+            <p><i>Last updated: " (insert-current-date)  "</i></p>
+            <p>Comments on <a href=\"https://mastodon.social/@nvrosvall\">Mastodon</a></p>
+            <p>All articles: <a href=\"index.html\">Index</a></p>
+
+            <hr>
+            Copyright &copy; Niko Rosvall
+        </div>
+    </body>
+</html>")
+
+(global-set-key (kbd "\C-ca") 'article-template)
