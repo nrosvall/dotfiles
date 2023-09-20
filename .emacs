@@ -107,6 +107,7 @@
  '(cua-mode t nil (cua-base))
  '(custom-safe-themes
    '("a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default))
+ '(gdb-many-windows t)
  '(tool-bar-mode nil)
  '(warning-suppress-types '((comp) (comp))))
 
@@ -128,6 +129,13 @@
  mu4e-sent-folder   "/Sent Items"
  mu4e-drafts-folder "/Drafts"
  mu4e-trash-folder  "/Trash")
+
+(setq mu4e-alert-interesting-mail-query
+      (concat
+       "flag:unread"
+       " AND NOT flag:trashed"
+       " AND NOT maildir:"
+       "\"/Junk Mail\""))
 
  ;; Re-index every 5 minutes.
 (setq mu4e-update-interval 300)
