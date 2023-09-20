@@ -141,11 +141,6 @@
 (setq mu4e-update-interval 300)
 (setq mu4e-user-mail-address-list '("niko@byteptr.com"))
 
-(add-to-list 'mu4e-bookmarks
-  '( :name  "From Katriina"
-     :query "from:katriina.ahava@gmail.com"
-     :key   ?k))
-
 (setq user-mail-address "niko@byteptr.com")
 
 ;; this setting allows to re-sync and re-index mail
