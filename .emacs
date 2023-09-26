@@ -149,6 +149,10 @@
 (setq message-send-mail-function 'message-send-mail-with-sendmail
       sendmail-program "msmtp")
 
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Important messages"
+     :query "flag:flagged"
+     :key   ?f))
 
 (global-set-key [f9] 'mu4e)
 (global-set-key [f8] 'mu4e-headers-toggle-full-search)
